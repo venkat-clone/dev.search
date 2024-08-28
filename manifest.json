@@ -1,0 +1,20 @@
+{
+    "name": "flutter_chrome_extension",
+    "description": "flutter_chrome_extension",
+    "version": "1.0.0",
+    "content_security_policy": {
+        "extension_pages": "script-src 'self' ; object-src 'self'"
+    },
+    "action": {
+        "default_popup": "index.html",
+        "default_icon": "/images/provenworks.png"
+    },
+    "manifest_version": 3,
+    "permissions": [
+        "storage",
+        "tabs"
+    ],
+    "chrome_url_overrides": {
+        "newtab": "index.html"
+    }
+}

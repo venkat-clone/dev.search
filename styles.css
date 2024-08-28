@@ -1,0 +1,284 @@
+:root {
+  --background-color: #191e29;
+  --primary-color: #01c38d;
+  --canvas-color: #132d46;
+  --shade: #696e79;
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  height: -webkit-fill-available;
+}
+
+.red {
+  background-color: red;
+}
+.green {
+  background-color: green;
+}
+.blue {
+  background-color: blue;
+}
+
+.flex {
+  display: flex;
+}
+
+.box {
+  min-width: 50px;
+  min-height: 40px;
+}
+.main {
+  margin: 2vh 10vw;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 10px;
+  background-color: var(--canvas-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 0 5px 0px var(--primary-color);
+  cursor: pointer;
+  color: #01c38d;
+  text-decoration: none;
+}
+.icon:hover {
+  transition: 0.15s;
+  box-shadow: 0 0 10px 1px var(--primary-color);
+}
+
+.searcharea {
+  height: 50vh;
+  display: grid;
+
+  justify-items: center;
+  align-content: center;
+}
+.search {
+  z-index: 10;
+  text-align: center;
+  margin: 10px;
+  color: var(--primary-color);
+  display: inline-flex;
+  border: 1.5px solid var(--primary-color);
+  border-radius: 50px;
+  padding: 10px;
+  align-items: center;
+  width: 400px;
+  font-size: 1.5em;
+  box-sizing: border-box;
+  font-weight: bold;
+  background-color: var(--canvas-color);
+}
+.search:focus-visible,
+.search:hover {
+  padding: 10px 20px;
+  border: none;
+  transition: 0.3s;
+  outline: 2px solid var(--primary-color);
+  box-shadow: 0 0 5px 3px var(--primary-color);
+  outline-offset: 0;
+}
+
+.bookmarks {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: auto auto auto;
+}
+.bookmark {
+  max-width: 24vw;
+  border-radius: 10px;
+  border: 1px solid var(--primary-color);
+  color: var(--shade);
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+}
+
+.bookmark-header {
+  margin: 5px;
+  display: flex;
+  align-items: center;
+}
+.bookmark-icon {
+  width: 40px;
+
+  height: 40px;
+  margin: 5px 10px;
+}
+.bookmark-url {
+  margin: 5px 12px;
+  padding-right: 10px;
+  overflow: auto;
+}
+
+.bookmark:hover {
+  transition: 0.3s;
+  box-shadow: 0px 0px 10px 2px var(--primary-color);
+  color: var(--primary-color);
+}
+
+.icon img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.bookmark a {
+  padding: 20px;
+  text-decoration: none;
+  display: block;
+  overflow-wrap: break-word;
+  overflow-x: visible;
+  color: var(--shade);
+}
+.bookmark a:hover {
+  color: var(--primary-color);
+}
+
+.shadowText {
+  text-shadow: var(--primary-color) 1px 0 1px;
+}
+
+.shadowText :hover {
+  transition: 0.3s;
+  text-shadow: var(--primary-color) 1px 0 3px;
+}
+
+.title {
+  cursor: pointer;
+}
+
+.suggestions {
+  display: none;
+  margin-top: -30px;
+  width: 400px;
+  border-width: 0px 1px 0px 1px;
+  padding: 30px 0px 0px 0px;
+  border: 1px solid var(--primary-color);
+  background-color: var(--canvas-color);
+  box-shadow: 0px 0px 3px 1px var(--primary-color);
+  z-index: 8;
+  position: absolute;
+  border-radius: 0px 0px 50px 50px;
+}
+.suggestion {
+  padding: 13px 30px;
+  margin: 0 -1px 0 -1px;
+  border: 1px solid var(--primary-color);
+  background-color: var(--canvas-color);
+  border-width: 0px 1px 1px 1px;
+  border-radius: 0px 0px 50px 50px;
+  z-index: 8;
+}
+.suj {
+  width: 397px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -30px;
+}
+.suggestion:hover {
+  z-index: 100;
+  box-shadow: 0px 3px 2px 1px var(--primary-color);
+  margin-bottom: 3px;
+}
+.google-filters {
+  display: flex;
+  margin: 2px 0;
+  width: 400px;
+  justify-content: space-between;
+}
+.g-filter {
+  cursor: pointer;
+  padding: 5px 13px;
+  background-color: var(--canvas-color);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.g-filter:hover {
+  box-shadow: 0px 1px 2px 1px var(--primary-color);
+}
+
+/* snack bar styles-copied from w3 schooles */
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+/* snack bar end */
