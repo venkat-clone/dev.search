@@ -80,7 +80,9 @@ searchInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         query = searchInput.value
 
-        url = 'https://www.google.com/search?q='
+        // url = 'https://www.google.com/search?q='
+
+        url = 'https://www.bing.com/search?q='
 
         url = url + query
         if (query == '') {
@@ -104,3 +106,48 @@ searchInput.addEventListener('input', function (event) {
 
     console.log(event.target.value);
 });
+
+const snapchat = document.querySelector('.snapchat');
+const apiUrl = 'https://newsapi.org/v2/top-headlines?category=technology&apiKey=f5808133ba3b49d585ec923a38f600c8'; // Update with your API key
+
+    // Function to fetch technology-related headlines
+    async function fetchKeywords() {
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        
+        // Extract headlines (or adjust according to the API response structure)
+        const keywords = data.articles.map(article => article.title);
+        
+        // Open search tabs for each keyword
+        openSearchTabs(keywords);
+      } catch (error) {
+        console.error('Error fetching keywords:', error);
+      }
+    }
+    
+    // Function to open Bing search tabs for each keyword
+    function openSearchTabs(keywords) {
+      const baseUrl = 'https://www.bing.com/search?q=';
+      
+      keywords.forEach(keyword => {
+        const searchUrl = baseUrl + encodeURIComponent(keyword);
+        chrome.tabs.create({ url: searchUrl });
+      });
+    }
+    
+    snapchat.onclick = () => {
+      fetchKeywords();
+    };
+
+
+
+
+
+
+
+
+
+
+
+
