@@ -12,6 +12,7 @@
     "manifest_version": 3,
     "permissions": [
         "storage",
+        "bookmarks",
         "tabs"
     ],
     "chrome_url_overrides": {

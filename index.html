@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Venkatesh</title>
   <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="main.js"></script>
+  <script type="module" src="config.js"></script>
 </head>
 
 <body>
@@ -14,50 +16,20 @@
       <div class="title shadowText">
         <h1>Venkatesh Lingampally</h1>
       </div>
-      <div class="icons flex">
-        <a href="http://chat.openai.com/">
-          <div class="icon">
-            <img src="images/chatgpt.jpg" alt="" />
-          </div>
-        </a>
-        <a href="https://www.youtube.com/">
-          <div class="icon">
-            <img src="images/youtube.png" alt="" />
-          </div>
-        </a>
-        <a href="https://github.com">
-          <div class="icon">
-            <img src="images/github.png" alt="" />
-          </div>
-        </a>
-        <a href="https://gmail.com">
-          <div class="icon">
-            <img src="images/gmail.png" alt="" />
-          </div>
-        </a>
-        <a href="https://linkedin.com">
-          <div class="icon">
-            <img src="images/linkedin.png" alt="" />
-          </div>
-        </a>
-        <a href="https://instagram.com">
-          <div class="icon">
-            <img src="images/instagram.png" alt="" />
-          </div>
-        </a>
-        <div class="icon snapchat">
-          <img src="images/snapchat.png" alt="" />
+      <div class="flex">
+        <div class="icons flex quick shortcuts" id="quickShortcuts">
+          <!-- Shortcuts will be dynamically inserted here -->
         </div>
-        <a href="https://app.dhiwise.com">
-          <div class="icon">
-            <img src="images/dhiwise.ico" alt="" />
-          </div>
-        </a>
+        <div class="add-shortcut-form" style="display: none;">
+          <input type="text" id="shortcutUrl" placeholder="Enter URL">
+          <input type="text" id="shortcutIcon" placeholder="Icon URL">
+          <input type="text" id="shortcutAlt" placeholder="Name">
+          <button id="saveShortcut">Add Shortcut</button>
+        </div>
+      <button id="toggleShortcutForm" class="icon">+</button>
 
-        <a href="https://app.leonardo.ai/ai-generations">
-          <div class="icon">AI</div>
-        </a>
       </div>
+   
     </div>
     <div class="searcharea">
       <input type="text" name="search" id="search" class="search" autocomplete="off" placeholder="Search anything" />
@@ -188,7 +160,7 @@
       <div id="snackbar">hello</div>
     </div>
   </div>
-  <script src="main.js"></script>
+  <!-- <script src="main.js"></script> -->
 </body>
 
 </html>
