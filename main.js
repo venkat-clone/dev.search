@@ -182,9 +182,9 @@ for (let i = 0; i < icons.length; i++) {
     if (icons[i] != undefined) {
 
         icons[i].onclick = (element) => {
-            query = searchInput.value
-            target = element.target
-            url = target.id
+            let query = searchInput.value
+            let target = element.target
+            let url = target.id
             if (url == undefined || url == '') {
                 url = target.parentElement.id
             }
