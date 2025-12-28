@@ -1,7 +1,12 @@
 {
-    "name": "flutter_chrome_extension",
-    "description": "flutter_chrome_extension",
+    "name": "Dev Search",
+    "description": "A minimalist Chrome new tab extension designed for developers with customizable shortcuts, quick search, and bookmark integration.",
     "version": "1.0.0",
+    "icons": {
+        "16": "favicon.png",
+        "48": "favicon.png",
+        "128": "favicon.png"
+    },
     "content_security_policy": {
         "extension_pages": "script-src 'self' ; object-src 'self'"
     },

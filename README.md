@@ -2,6 +2,8 @@
 
 A minimalist Chrome new tab extension designed for developers with customizable shortcuts, quick search, and bookmark integration.
 
+![Dev Search Screenshot](samples/image.png)
+
 ## ✨ Features
 
 - **Modern Dark Theme** with neon accents
