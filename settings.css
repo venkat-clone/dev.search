@@ -1,0 +1,465 @@
+/* Settings Side Panel - Redesign */
+.settings-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2000;
+  pointer-events: none; /* Let clicks pass through when closed */
+}
+
+/* Backdrop */
+.settings-modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.settings-modal.open {
+  pointer-events: auto;
+}
+
+.settings-modal.open::before {
+  opacity: 1;
+}
+
+.settings-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100%;
+  background: rgba(19, 29, 41, 0.95); /* Deep dark blue */
+  backdrop-filter: blur(20px);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-modal.open .settings-content {
+  transform: translateX(0);
+}
+
+/* Header */
+.settings-header {
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.settings-header h2 {
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: -0.5px;
+  margin: 0;
+  background: linear-gradient(120deg, #fff, #a5b4fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.close-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  font-size: 20px;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: rotate(90deg);
+}
+
+/* Scrollable Content */
+.settings-body {
+  padding: 30px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.settings-body::-webkit-scrollbar {
+  width: 6px;
+}
+.settings-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.settings-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.settings-section {
+  margin-bottom: 40px;
+  animation: slideUp 0.5s ease backwards;
+}
+
+.settings-section:nth-child(2) { animation-delay: 0.1s; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.settings-section h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Control Groups */
+.control-group {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  transition: background 0.2s;
+}
+
+.control-group:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.control-group span {
+  color: #eee;
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+/* Modern Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: .4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border-radius: 32px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #fff;
+  transition: .4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(1, 195, 141, 0.3);
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* Inputs */
+.settings-content input[type="text"],
+.settings-content select {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 1rem;
+  margin-top: 8px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.settings-content input[type="text"]:focus,
+.settings-content select:focus {
+  border-color: var(--primary-color);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Presets Grid */
+.presets-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.preset-btn {
+  aspect-ratio: 4/3;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.preset-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.2);
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.preset-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.preset-btn:hover::after { opacity: 1; }
+
+.preset-btn:active {
+  transform: scale(0.95);
+}
+
+/* Upload Button */
+.upload-btn {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px dashed rgba(255,255,255,0.2);
+  padding: 25px;
+  border-radius: 16px;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  text-align: center;
+  color: rgba(255,255,255,0.7);
+  transition: 0.2s;
+  box-sizing: border-box;
+}
+
+.upload-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background: rgba(1, 195, 141, 0.05);
+}
+
+#applyBgImage {
+  background: var(--primary-color);
+  color: #000;
+  border: none;
+  width: 100%;
+  padding: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#applyBgImage:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* Theme Selector */
+.theme-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.theme-swatch {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: all 0.3s;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.theme-swatch:hover {
+  transform: scale(1.1);
+}
+
+.theme-swatch.active {
+  border-color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px var(--primary-color);
+}
+
+.theme-swatch::after {
+  content: '✓';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  color: white;
+  font-weight: bold;
+  transition: 0.2s;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.theme-swatch.active::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Shortcuts Manager */
+.shortcuts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 250px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding-right: 5px;
+}
+
+.shortcut-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: 0.2s;
+}
+
+.shortcut-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.shortcut-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.shortcut-icon-preview {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.shortcut-name {
+  font-weight: 500;
+  color: #fff;
+}
+
+.delete-shortcut-btn {
+  background: none;
+  border: none;
+  color: #ff5252;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.2s;
+  padding: 5px;
+}
+
+.delete-shortcut-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.add-shortcut-btn {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 500;
+}
+
+.add-shortcut-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.add-shortcut-form {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 16px;
+  margin-top: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  animation: slideDown 0.3s ease;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.save-btn, .cancel-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.save-btn {
+  background: var(--primary-color);
+  color: #000;
+}
+
+.save-btn:hover {
+  filter: brightness(1.1);
+}
+
+.cancel-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

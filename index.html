@@ -11,6 +11,7 @@
 </head>
 
 <body>
+  <div class="background-name">Venkatesh Lingampally</div>
   <div class="main">
     <div class="header">
       <div class="title shadowText">
@@ -26,10 +27,117 @@
           <input type="text" id="shortcutAlt" placeholder="Name">
           <button id="saveShortcut">Add Shortcut</button>
         </div>
-      <button id="toggleShortcutForm" class="icon">+</button>
-
+        <button id="toggleShortcutForm" class="icon" title="Add Shortcut">+</button>
+        <button id="openSettings" class="icon" title="Settings">⚙️</button>
       </div>
-   
+    </div>
+
+    <!-- Settings Side Panel -->
+    <div id="settingsModal" class="settings-modal">
+      <div class="settings-content">
+        <div class="settings-header">
+          <h2>Customize</h2>
+          <button id="closeSettings" class="close-btn" title="Close">✕</button>
+        </div>
+        
+        <div class="settings-body">
+          <div class="settings-section">
+            <h3>Appearance</h3>
+             <div class="theme-container" id="themeSelector">
+              <!-- JS will inject swatches -->
+            </div>
+            
+            <div class="control-group">
+              <span>Show Name</span>
+              <label class="switch">
+                <input type="checkbox" id="showTitle" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <input type="text" id="customTitleInput" placeholder="Enter Name" value="Venkatesh Lingampally">
+            
+            <div class="control-group" style="margin-top: 15px;">
+              <span>Show Bookmarks</span>
+              <label class="switch">
+                <input type="checkbox" id="showBookmarks" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>Search Shortcuts</h3>
+            <div id="shortcutsList" class="shortcuts-list">
+              <!-- Shortcuts injected by JS -->
+            </div>
+            
+            <div class="recommended-section" style="margin-bottom: 15px;">
+              <h4 style="font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Recommended</h4>
+              <div id="recommendedShortcuts" class="recommended-chips">
+                <!-- Chips injected by JS -->
+              </div>
+            </div>
+
+            <button id="showAddShortcutBtn" class="add-shortcut-btn">+ Add New Shortcut</button>
+            
+            <div id="addShortcutForm" class="add-shortcut-form" style="display:none;">
+              <input type="text" id="newShortcutName" placeholder="Name (e.g. Google)">
+              <input type="text" id="newShortcutUrl" placeholder="Search URL (e.g. https://google.com/search?q=)">
+              <input type="text" id="newShortcutIcon" placeholder="Icon URL (e.g. https://.../icon.png)">
+              <div class="form-actions">
+                <button id="saveShortcutBtn" class="save-btn">Save</button>
+                <button id="cancelShortcutBtn" class="cancel-btn">Cancel</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>Background</h3>
+            <select id="bgType">
+              <option value="solid">Solid Color</option>
+              <option value="gradient">Gradient</option>
+              <option value="image">Image</option>
+            </select>
+
+            <div id="bgControls">
+              <!-- Dynamic controls inserted by JS -->
+              <div id="solidControls" class="bg-control-group">
+                 <label>Pick Color</label>
+                 <input type="color" id="bgColorPicker" value="#191e29">
+              </div>
+              
+              <div id="gradientControls" class="bg-control-group" style="display:none;">
+                 <input type="color" id="bgGradientStart" value="#191e29">
+                 <input type="color" id="bgGradientEnd" value="#132d46">
+                 <select id="bgGradientDir">
+                   <option value="to right">Left to Right</option>
+                   <option value="to bottom">Top to Bottom</option>
+                   <option value="45deg">Diagonal</option>
+                 </select>
+              </div>
+
+              <div id="imageControls" class="bg-control-group" style="display:none;">
+                 <div class="upload-group">
+                   <label for="bgImageUpload" class="upload-btn">
+                     <span>Upload Image</span>
+                   </label>
+                   <input type="file" id="bgImageUpload" accept="image/*" style="display: none;">
+                 </div>
+                 <div style="text-align: center; margin: 10px 0; color: #666;">- OR -</div>
+                 <input type="text" id="bgImageUrl" placeholder="Paste Image URL">
+                 <button id="applyBgImage">Apply URL</button>
+              </div>
+            </div>
+            
+            <div class="presets-section">
+              <h4>Presets</h4>
+              <div class="presets-container" id="bgPresets">
+                <!-- Presets injected by JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="searcharea">
       <input type="text" name="search" id="search" class="search" autocomplete="off" placeholder="Search anything" />
@@ -48,33 +156,7 @@
       </div>
 
       <div class="icons flex" id="searchIcons">
-        <div class="icon" id="https://www.youtube.com/results?search_query=">
-          <img src="images/youtube.png" alt="" />
-        </div>
-        <div class="icon" id="https://github.com/search?q=">
-          <img src="images/github.png" alt="" />
-        </div>
-        <div class="icon" id="https://dribbble.com/search/">
-          <img src="images/dribble.png" alt="" />
-        </div>
-        <div class="icon" id="https://www.linkedin.com/search/results/all/?keywords=">
-          <img src="images/linkedin.png" alt="" />
-        </div>
-
-        <div class="icon" id="https://www.upwork.com/nx/jobs/search/?q=">
-          <img src="images/upwork.png" alt="" />
-        </div>
-      </div>
-      <div class="icons flex" id="searchIcons">
-        <div class="icon" id="https://pub.dev/packages?q=">
-          <img src="images/flutter.png" alt="" />
-        </div>
-        <div class="icon" id="https://www.npmjs.com/search?q=">
-          <img src="images/react.png" alt="" />
-        </div>
-        <div class="icon" id="https://kandi.openweaver.com/search?q=">
-          <img src="images/kandi.svg" alt="" />
-        </div>
+        <!-- Icons injected dynamically by JS -->
       </div>
     </div>
     <div class="bookmarks">
