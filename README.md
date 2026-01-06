@@ -2,7 +2,7 @@
 
 A minimalist Chrome new tab extension designed for developers with customizable shortcuts, quick search, and bookmark integration.
 
-![Dev Search Screenshot](samples/image.png)
+![Dev Search Screenshot](samples/demo.mp4)
 
 ## ✨ Features
 
