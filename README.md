@@ -2,12 +2,11 @@
 
 A minimalist Chrome new tab extension designed for developers with customizable shortcuts, quick search, and bookmark integration.
 
-![Dev Search Screenshot](https://raw.githubusercontent.com/venkat-clone/dev.search/refs/heads/main/samples/demo.mp4)
+![Dev Search Screenshot](samples/image.png)
+
+![View Video demo at ](https://raw.githubusercontent.com/venkat-clone/dev.search/refs/heads/main/samples/demo.mp4)
 
 
-<video width="320" height="240" controls>
-  <source src="https://raw.githubusercontent.com/venkat-clone/dev.search/refs/heads/main/samples/demo.mp4" type="video/mp4">
-</video>
 
 
 
