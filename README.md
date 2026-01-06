@@ -4,6 +4,12 @@ A minimalist Chrome new tab extension designed for developers with customizable 
 
 ![Dev Search Screenshot](samples/demo.mp4)
 
+<video width="320" height="240" controls>
+  <source src="samples/demo.mp4" type="video/mp4">
+</video>
+
+
+
 ## ✨ Features
 
 - **Modern Dark Theme** with neon accents
