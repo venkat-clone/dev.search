@@ -1,248 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Venkatesh</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="main.js"></script>
+    <script type="module" src="search.js"></script>
+    <script type="module" src="config.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Venkatesh</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script type="module" src="main.js"></script>
-  <script type="module" src="config.js"></script>
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Carattere&display=swap" rel="stylesheet">
+    <script src="time.js"></script>
+    <script src="quotes.js"></script>
+  </head>
 
-<body>
-  <div class="background-name">Venkatesh Lingampally</div>
-  <div class="main">
-    <div class="header">
-      <div class="title shadowText">
-        <h1>Venkatesh Lingampally</h1>
-      </div>
-      <div class="flex">
-        <div class="icons flex quick shortcuts" id="quickShortcuts">
-          <!-- Shortcuts will be dynamically inserted here -->
-        </div>
-        <div class="add-shortcut-form" style="display: none;">
-          <input type="text" id="shortcutUrl" placeholder="Enter URL">
-          <input type="text" id="shortcutIcon" placeholder="Icon URL">
-          <input type="text" id="shortcutAlt" placeholder="Name">
-          <button id="saveShortcut">Add Shortcut</button>
-        </div>
-        <button id="toggleShortcutForm" class="icon" title="Add Shortcut">+</button>
-        <button id="openSettings" class="icon" title="Settings">⚙️</button>
-      </div>
-    </div>
-
-    <!-- Settings Side Panel -->
-    <div id="settingsModal" class="settings-modal">
-      <div class="settings-content">
-        <div class="settings-header">
-          <h2>Customize</h2>
-          <button id="closeSettings" class="close-btn" title="Close">✕</button>
-        </div>
-        
-        <div class="settings-body">
-          <div class="settings-section">
-            <h3>Appearance</h3>
-             <div class="theme-container" id="themeSelector">
-              <!-- JS will inject swatches -->
-            </div>
-            
-            <div class="control-group">
-              <span>Show Name</span>
-              <label class="switch">
-                <input type="checkbox" id="showTitle" checked>
-                <span class="slider round"></span>
-              </label>
-            </div>
-            <input type="text" id="customTitleInput" placeholder="Enter Name" value="Venkatesh Lingampally">
-            
-            <div class="control-group" style="margin-top: 15px;">
-              <span>Show Bookmarks</span>
-              <label class="switch">
-                <input type="checkbox" id="showBookmarks" checked>
-                <span class="slider round"></span>
-              </label>
-            </div>
+  <body>
+    <div class="main-container">
+      <div class="main">
+        <div class="header">
+          <div class="title shadowText">
+            <h4>NEW TAB</h4>
           </div>
-
-          <div class="settings-section">
-            <h3>Search Shortcuts</h3>
-            <div id="shortcutsList" class="shortcuts-list">
-              <!-- Shortcuts injected by JS -->
-            </div>
-            
-            <div class="recommended-section" style="margin-bottom: 15px;">
-              <h4 style="font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Recommended</h4>
-              <div id="recommendedShortcuts" class="recommended-chips">
-                <!-- Chips injected by JS -->
-              </div>
+          <div class="flex">
+            <div class="icons flex quick shortcuts" id="quickShortcuts">
+              <!-- Shortcuts will be dynamically inserted here -->
             </div>
 
-            <button id="showAddShortcutBtn" class="add-shortcut-btn">+ Add New Shortcut</button>
-            
-            <div id="addShortcutForm" class="add-shortcut-form" style="display:none;">
-              <input type="text" id="newShortcutName" placeholder="Name (e.g. Google)">
-              <input type="text" id="newShortcutUrl" placeholder="Search URL (e.g. https://google.com/search?q=)">
-              <input type="text" id="newShortcutIcon" placeholder="Icon URL (e.g. https://.../icon.png)">
-              <div class="form-actions">
-                <button id="saveShortcutBtn" class="save-btn">Save</button>
-                <button id="cancelShortcutBtn" class="cancel-btn">Cancel</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="settings-section">
-            <h3>Background</h3>
-            <select id="bgType">
-              <option value="solid">Solid Color</option>
-              <option value="gradient">Gradient</option>
-              <option value="image">Image</option>
-            </select>
-
-            <div id="bgControls">
-              <!-- Dynamic controls inserted by JS -->
-              <div id="solidControls" class="bg-control-group">
-                 <label>Pick Color</label>
-                 <input type="color" id="bgColorPicker" value="#191e29">
-              </div>
-              
-              <div id="gradientControls" class="bg-control-group" style="display:none;">
-                 <input type="color" id="bgGradientStart" value="#191e29">
-                 <input type="color" id="bgGradientEnd" value="#132d46">
-                 <select id="bgGradientDir">
-                   <option value="to right">Left to Right</option>
-                   <option value="to bottom">Top to Bottom</option>
-                   <option value="45deg">Diagonal</option>
-                 </select>
-              </div>
-
-              <div id="imageControls" class="bg-control-group" style="display:none;">
-                 <div class="upload-group">
-                   <label for="bgImageUpload" class="upload-btn">
-                     <span>Upload Image</span>
-                   </label>
-                   <input type="file" id="bgImageUpload" accept="image/*" style="display: none;">
-                 </div>
-                 <div style="text-align: center; margin: 10px 0; color: #666;">- OR -</div>
-                 <input type="text" id="bgImageUrl" placeholder="Paste Image URL">
-                 <button id="applyBgImage">Apply URL</button>
-              </div>
-            </div>
-            
-            <div class="presets-section">
-              <h4>Presets</h4>
-              <div class="presets-container" id="bgPresets">
-                <!-- Presets injected by JS -->
-              </div>
-            </div>
+            <button id="toggleShortcutForm" class="icon" title="Add Shortcut">
+              +
+            </button>
+            <button id="openSettings" class="icon" title="Settings">⚙️</button>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="searcharea">
-      <input type="text" name="search" id="search" class="search" autocomplete="off" placeholder="Search anything" />
-      <div class="google-filters">
+
+        <!-- Settings Side Panel -->
+        <div id="settingsModal" class="settings-modal">
+          <div class="settings-content">
+            <div class="settings-header">
+              <h2>Customize</h2>
+              <button id="closeSettings" class="close-btn" title="Close">
+                ✕
+              </button>
+            </div>
+
+            <div class="settings-body">
+              <div class="settings-section">
+                <h3>Appearance</h3>
+                <div class="theme-container" id="themeSelector">
+                  <!-- JS will inject swatches -->
+                </div>
+
+                <div class="control-group">
+                  <span>Show Name</span>
+                  <label class="switch">
+                    <input type="checkbox" id="showTitle" checked />
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+                <input
+                  type="text"
+                  id="customTitleInput"
+                  placeholder="Enter Name"
+                  value="Venkatesh Lingampally"
+                />
+
+                <div class="control-group" style="margin-top: 15px">
+                  <span>Show Bookmarks</span>
+                  <label class="switch">
+                    <input type="checkbox" id="showBookmarks" checked />
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="settings-section">
+                <h3>Search Shortcuts</h3>
+                <div id="shortcutsList" class="shortcuts-list">
+                  <!-- Shortcuts injected by JS -->
+                </div>
+
+                <div class="recommended-section" style="margin-bottom: 15px">
+                  <h4
+                    style="
+                      font-size: 0.8rem;
+                      color: rgba(255, 255, 255, 0.5);
+                      margin-bottom: 10px;
+                      text-transform: uppercase;
+                      letter-spacing: 1px;
+                    "
+                  >
+                    Recommended
+                  </h4>
+                  <div id="recommendedShortcuts" class="recommended-chips">
+                    <!-- Chips injected by JS -->
+                  </div>
+                </div>
+
+                <button id="showAddShortcutBtn" class="add-shortcut-btn">
+                  + Add New Shortcut
+                </button>
+
+                <div
+                  id="addShortcutForm"
+                  class="add-shortcut-form"
+                  style="display: none"
+                >
+                  <input
+                    type="text"
+                    id="newShortcutName"
+                    placeholder="Name (e.g. Google)"
+                  />
+                  <input
+                    type="text"
+                    id="newShortcutUrl"
+                    placeholder="Search URL (e.g. https://google.com/search?q=)"
+                  />
+                  <input
+                    type="text"
+                    id="newShortcutIcon"
+                    placeholder="Icon URL (e.g. https://.../icon.png)"
+                  />
+                  <div class="form-actions">
+                    <button id="saveShortcutBtn" class="save-btn">Save</button>
+                    <button id="cancelShortcutBtn" class="cancel-btn">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="settings-section">
+                <h3>Background</h3>
+                <select id="bgType">
+                  <option value="solid">Solid Color</option>
+                  <option value="gradient">Gradient</option>
+                  <option value="image">Image</option>
+                </select>
+
+                <div id="bgControls">
+                  <!-- Dynamic controls inserted by JS -->
+                  <div id="solidControls" class="bg-control-group">
+                    <label>Pick Color</label>
+                    <input type="color" id="bgColorPicker" value="#191e29" />
+                  </div>
+
+                  <div
+                    id="gradientControls"
+                    class="bg-control-group"
+                    style="display: none"
+                  >
+                    <input type="color" id="bgGradientStart" value="#191e29" />
+                    <input type="color" id="bgGradientEnd" value="#132d46" />
+                    <select id="bgGradientDir">
+                      <option value="to right">Left to Right</option>
+                      <option value="to bottom">Top to Bottom</option>
+                      <option value="45deg">Diagonal</option>
+                    </select>
+                  </div>
+
+                  <div
+                    id="imageControls"
+                    class="bg-control-group"
+                    style="display: none"
+                  >
+                    <div class="upload-group">
+                      <label for="bgImageUpload" class="upload-btn">
+                        <span>Upload Image</span>
+                      </label>
+                      <input
+                        type="file"
+                        id="bgImageUpload"
+                        accept="image/*"
+                        style="display: none"
+                      />
+                    </div>
+                    <div
+                      style="text-align: center; margin: 10px 0; color: #666"
+                    >
+                      - OR -
+                    </div>
+                    <input
+                      type="text"
+                      id="bgImageUrl"
+                      placeholder="Paste Image URL"
+                    />
+                    <button id="applyBgImage">Apply URL</button>
+                  </div>
+                </div>
+
+                <div class="presets-section">
+                  <h4>Presets</h4>
+                  <div class="presets-container" id="bgPresets">
+                    <!-- Presets injected by JS -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-container">
+          <h1 class="quote">
+          </h1>
+          <p class="author">
+            
+          </p>
+        </div>
+
+        <div class="searcharea">
+          <div class="icons flex searchIcons" id="searchIcons">
+            <!-- Icons injected dynamically by JS -->
+          </div>
+
+          <div class="search-container">
+            <img src="images/search.png" width="24px" height="24px" />
+            <input
+              type="text"
+              name="search"
+              id="search"
+              class="search"
+              autocomplete="off"
+              placeholder="Search anything"
+              autofocus="true"
+            />
+            <p>
+              <kbd id="shortcut">Ctrl / (⌥) + Tab</kbd>
+            </p>
+          </div>
+          <!-- <div class="google-filters">
         <div class="g-filter" id='"*.pdf "'>Pdf</div>
         <div class="g-filter" id="site:drive.google.com ">G-Drive</div>
         <div class="g-filter" id="site:">In Site</div>
         <div class="g-filter" id="inurl:">In Url</div>
         <div class="g-filter" id='"*.pdf" site:mrcet.com '>Mlrd pdf</div>
-      </div>
-      <div class="suj">
-        <div class="suggestions">
-          <div class="suggestion">Hello 123</div>
-          <div class="suggestion">Hello 1jh</div>
+      </div> -->
+        </div>
+
+        <div class="bookmarks">
+          <div class="bookmark">
+            <a href="https://github.com/venkat-clone">
+              <div class="bookmark-header">
+                <img class="bookmark-icon flex" src="images/github.png" />
+                <div class="bookmark-title flex">github</div>
+              </div>
+              <div class="bookmark-url">https://github.com/venkat-clone</div>
+            </a>
+          </div>
+
+          <div class="bookmark">
+            <a href="https://web.whatsapp.com/">
+              <div class="bookmark-header">
+                <img class="bookmark-icon flex" src="images/whatsapp.png" />
+                <div class="bookmark-title flex">whatsapp</div>
+              </div>
+              <div class="bookmark-url">https://web.whatsapp.com/</div>
+            </a>
+          </div>
+          <div class="bookmark">
+            <a href="https://www.linkedin.com/in/lingampallyvenkey/">
+              <div class="bookmark-header">
+                <img class="bookmark-icon flex" src="images/linkedin.png" />
+                <div class="bookmark-title flex">linkedin</div>
+              </div>
+              <div class="bookmark-url">
+                https://www.linkedin.com/in/lingampallyvenkey/
+              </div>
+            </a>
+          </div>
+
+          <div class="bookmark">
+            <a
+              href="https://internshala.com/internships/work-from-home-flutter,flutter-development,python,software-development-internships-in-hyderabad/stipend-10000/"
+            >
+              <div class="bookmark-header">
+                <img class="bookmark-icon flex" src="images/internshala.png" />
+                <div class="bookmark-title flex">internshala internships</div>
+              </div>
+              <div class="bookmark-url">
+                https://internshala.com/internships/work-from-home-flutter,flutter-development,python,software-development-internships-in-hyderabad/stipend-10000/
+              </div>
+            </a>
+          </div>
+          <div class="bookmark">
+            <a
+              href="https://internshala.com/jobs/software-development,flutter-development-jobs-in-hyderabad/work-from-home/salary-2/"
+            >
+              <div class="bookmark-header">
+                <img class="bookmark-icon flex" src="images/internshala.png" />
+                <div class="bookmark-title flex">internshala Jobs</div>
+              </div>
+              <div class="bookmark-url">
+                https://internshala.com/jobs/software-development,flutter-development-jobs-in-hyderabad/work-from-home/salary-2/
+              </div>
+            </a>
+          </div>
+
+          <div class="bookmark">
+            <a href="https://www.figma.com/files/recents-and-sharing">
+              <div class="bookmark-header">
+                <img class="bookmark-icon flex" src="images/figma.png" />
+                <div class="bookmark-title flex">Figma</div>
+              </div>
+              <div class="bookmark-url">
+                https://www.figma.com/files/recents-and-sharing
+              </div>
+            </a>
+          </div>
+
+          <div class="bookmark">
+            <a
+              href="https://drive.google.com/drive/folders/1dCZT6vRNEvGDSovVnLszQq60MueVXGJ-?usp=drive_link"
+            >
+              <div class="bookmark-header">
+                <img class="bookmark-icon flex" src="images/drive.png" />
+                <div class="bookmark-title flex">My Worksamples & Resume</div>
+              </div>
+              <div class="bookmark-url">
+                https://drive.google.com/drive/folders/1dCZT6vRNEvGDSovVnLszQq60MueVXGJ-?usp=drive_link
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="bottom">
+          <div id="date-time">Loading...</div>
+          <div id=""></div>
         </div>
       </div>
-
-      <div class="icons flex" id="searchIcons">
-        <!-- Icons injected dynamically by JS -->
-      </div>
     </div>
-    <div class="bookmarks">
-      <div class="bookmark">
-        <a href="https://github.com/venkat-clone">
-          <div class="bookmark-header">
-            <img class="bookmark-icon flex" src="images/github.png" />
-            <div class="bookmark-title flex">github</div>
-          </div>
-          <div class="bookmark-url">https://github.com/venkat-clone</div>
-        </a>
-      </div>
-
-      <div class="bookmark">
-        <a href="https://web.whatsapp.com/">
-          <div class="bookmark-header">
-            <img class="bookmark-icon flex" src="images/whatsapp.png" />
-            <div class="bookmark-title flex">whatsapp</div>
-          </div>
-          <div class="bookmark-url">https://web.whatsapp.com/</div>
-        </a>
-      </div>
-      <div class="bookmark">
-        <a href="https://www.linkedin.com/in/lingampallyvenkey/">
-          <div class="bookmark-header">
-            <img class="bookmark-icon flex" src="images/linkedin.png" />
-            <div class="bookmark-title flex">linkedin</div>
-          </div>
-          <div class="bookmark-url">
-            https://www.linkedin.com/in/lingampallyvenkey/
-          </div>
-        </a>
-      </div>
-
-      <div class="bookmark">
-        <a
-          href="https://internshala.com/internships/work-from-home-flutter,flutter-development,python,software-development-internships-in-hyderabad/stipend-10000/">
-          <div class="bookmark-header">
-            <img class="bookmark-icon flex" src="images/internshala.png" />
-            <div class="bookmark-title flex">internshala internships</div>
-          </div>
-          <div class="bookmark-url">
-            https://internshala.com/internships/work-from-home-flutter,flutter-development,python,software-development-internships-in-hyderabad/stipend-10000/
-          </div>
-        </a>
-      </div>
-      <div class="bookmark">
-        <a
-          href="https://internshala.com/jobs/software-development,flutter-development-jobs-in-hyderabad/work-from-home/salary-2/">
-          <div class="bookmark-header">
-            <img class="bookmark-icon flex" src="images/internshala.png" />
-            <div class="bookmark-title flex">internshala Jobs</div>
-          </div>
-          <div class="bookmark-url">
-            https://internshala.com/jobs/software-development,flutter-development-jobs-in-hyderabad/work-from-home/salary-2/
-          </div>
-        </a>
-      </div>
-
-      <div class="bookmark">
-        <a href="https://www.figma.com/files/recents-and-sharing">
-          <div class="bookmark-header">
-            <img class="bookmark-icon flex" src="images/figma.png" />
-            <div class="bookmark-title flex">Figma</div>
-          </div>
-          <div class="bookmark-url">
-            https://www.figma.com/files/recents-and-sharing
-          </div>
-        </a>
-      </div>
-
-      <div class="bookmark">
-        <a href="https://drive.google.com/drive/folders/1dCZT6vRNEvGDSovVnLszQq60MueVXGJ-?usp=drive_link">
-          <div class="bookmark-header">
-            <img class="bookmark-icon flex" src="images/drive.png" />
-            <div class="bookmark-title flex">My Worksamples & Resume</div>
-          </div>
-          <div class="bookmark-url">
-            https://drive.google.com/drive/folders/1dCZT6vRNEvGDSovVnLszQq60MueVXGJ-?usp=drive_link
-          </div>
-        </a>
-      </div>
-      <div id="snackbar">hello</div>
-    </div>
-  </div>
-  <!-- <script src="main.js"></script> -->
-</body>
-
+  </body>
 </html>
